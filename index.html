@@ -58,14 +58,14 @@ input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid v
 <div><input type="radio" name="Phạm vi thiệp" id="s2" value="Chỉ nhà Trai"><label for="s2">Chỉ nhà Trai</label></div>
 <div><input type="radio" name="Phạm vi thiệp" id="s3" value="Chỉ nhà Gái"><label for="s3">Chỉ nhà Gái</label></div>
 </div></section>
-<fieldset id="p-t" hidden disabled><h2>Thông tin nhà Trai</h2><div></div></fieldset>
-<fieldset id="p-g" hidden disabled><h2>Thông tin nhà Gái</h2><div></div></fieldset>
+<fieldset id="p-t" hidden disabled><h2>Thông tin nhà Trai</h2><p style="margin:0 0 4px;color:var(--mut);font-size:14px">Chưa chốt thông tin nào thì bạn cứ để trống, bên mình sẽ hỏi lại qua Zalo.</p><div></div></fieldset>
+<fieldset id="p-g" hidden disabled><h2>Thông tin nhà Gái</h2><p style="margin:0 0 4px;color:var(--mut);font-size:14px">Chưa chốt thông tin nào thì bạn cứ để trống, bên mình sẽ hỏi lại qua Zalo.</p><div></div></fieldset>
 <section><h2>Lời nhắn</h2><div id="c3"></div></section>
 <button class="go" type="submit">Gửi thông tin</button>
 </form></main>
 <script>
 // === CẦN SỬA 2 DÒNG NÀY ===
-const URL_SCRIPT="https://script.google.com/macros/s/AKfycbzZLXrA3FbLCDdyXzx6-cU4_vi5AC3f__nZkVzspVSqQFGeWXd0ZQKdlZ0cW9lp9x0ecQ/exec";
+const URL_SCRIPT="https://script.google.com/macros/s/AKfycbwcAHAxH6MKEbmpJUJ3YZXALVLyf4ipv4nYaLvsdbbn8LG5ey699Tcr4GJdA2QUYVuEaQ/exec";
 const TOKEN="Tdt@28tp$USD"; // phải giống TOKEN trong Code.gs
 // ==========================
 const W=["Chủ nhật","Thứ hai","Thứ ba","Thứ tư","Thứ năm","Thứ sáu","Thứ bảy"];
@@ -81,11 +81,11 @@ const T=(a,b)=>[{l:a,t:"time24",r:0,tip:"Gõ số hoặc chọn từ gợi ý, t
  {l:b+" (dương lịch)",t:"date",r:0,tip:"Bấm vào ô để mở lịch: số lớn là ngày dương, số nhỏ là ngày âm. Chọn xong, ngày âm sẽ tự điền bên dưới."},
  {l:b+" (âm lịch)",r:0,ph:"Tự điền theo ngày dương, có thể sửa",tip:"Tự điền theo ngày dương lịch bạn chọn. Nếu cần chỉnh thì sửa trực tiếp."}];
 const P=(le,who)=>[
- {l:"Số lượng thiệp",t:"number",a:'min="1" inputmode="numeric"',tip:"Nên lấy dư so với dự tính để khỏi thiếu phải in lại, phát sinh thêm chi phí."},
- {l:"Tên lễ",t:"select",o:le,tip:"Chọn tên lễ sẽ in trên thiệp."},
+ {l:"Số lượng thiệp",t:"number",r:0,a:'min="1" inputmode="numeric"',tip:"Nên lấy dư so với dự tính để khỏi thiếu phải in lại, phát sinh thêm chi phí."},
+ {l:"Tên lễ",t:"select",r:0,o:le,tip:"Chọn tên lễ sẽ in trên thiệp."},
  {sub:"Lễ cử hành hôn lễ"},
- ...T("Giờ cử hành hôn lễ","Ngày cử hành").map((x,i)=>i==1?{...x,r:1}:x),
- {l:"Địa chỉ tổ chức lễ cưới",tip:"Tư gia (nhà riêng " + who + ") hoặc địa chỉ nhà hàng. Ghi đủ số nhà, đường, phường/xã, tỉnh/thành."},
+ ...T("Giờ cử hành hôn lễ","Ngày cử hành"),
+ {l:"Địa chỉ tổ chức lễ cưới",r:0,tip:"Tư gia (nhà riêng " + who + ") hoặc địa chỉ nhà hàng. Ghi đủ số nhà, đường, phường/xã, tỉnh/thành."},
  {sub:"Đãi tiệc (nếu có)"},
  ...T("Giờ đãi tiệc","Ngày đãi tiệc"),
  {l:"Địa chỉ tổ chức đại tiệc",r:0,tip:"Tư gia hoặc nhà hàng, ghi đủ địa chỉ."}];
