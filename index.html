@@ -38,6 +38,9 @@ input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid v
 .cg i{position:absolute;left:7px;top:6px;font-size:20px;font-weight:600;line-height:1;font-style:normal}
 .cg em{position:absolute;right:5px;bottom:4px;font-size:12px;color:var(--mut);font-style:normal}
 .cg .o{opacity:.4}.cg .su i{color:#d0021b}.cg .sel{background:#fde9d0}.dp{cursor:pointer}
+.rq{color:#d0021b;font-weight:600}.err{display:none;color:#d0021b;font-size:14px;margin:4px 0 0}
+.bad .err{display:block}.bad input,.bad select,.bad textarea{border-color:#d0021b;background:#fff6f6}.bad .pick label{border-color:#d0021b}
+.sum{background:#fdecec;color:#a50e1d;border-radius:8px;padding:10px 12px;margin:0 0 12px;font-size:14px}
 .wd{font-size:14px;color:var(--ac);margin-top:4px}
 .sub{font-weight:600;margin-top:22px;padding-top:14px;border-top:1px solid var(--ln)}
 [hidden]{display:none!important}
@@ -48,19 +51,20 @@ input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid v
 </style></head>
 <body><main>
 <h1>Thông tin đặt thiệp cưới</h1>
-<p class="hello">Chào bạn, cảm ơn bạn đã tin tưởng đặt thiệp cưới bên mình. Bạn điền giúp mình thông tin bên dưới nhé, chỗ nào chưa rõ hãy bấm dấu <b>?</b> để xem gợi ý. Cần hỗ trợ cứ nhắn Zalo cho mình.</p>
-<form id="f">
+<p class="hello">Chào bạn, cảm ơn bạn đã tin tưởng và lựa chọn Thiệp Cưới Linh Anh. Bạn điền giúp mình thông tin bên dưới nhé, chỗ nào chưa rõ hãy bấm dấu <b>?</b> để xem gợi ý. Cần hỗ trợ cứ nhắn Zalo cho mình. Các mục có dấu <span class="rq">*</span> là bắt buộc.</p>
+<form id="f" novalidate>
 <section><h2>Thông tin liên hệ</h2><div id="c1"></div></section>
 <section><h2>Thông tin chung hai họ</h2><div id="c2"></div></section>
-<section><h2>Bạn muốn làm thiệp cho</h2>
+<section><h2>Bạn muốn làm thiệp cho <span class="rq">*</span></h2>
 <div class="pick">
 <div><input type="radio" name="Phạm vi thiệp" id="s1" value="Cả hai nhà" required><label for="s1">Cả hai nhà</label></div>
 <div><input type="radio" name="Phạm vi thiệp" id="s2" value="Chỉ nhà Trai"><label for="s2">Chỉ nhà Trai</label></div>
 <div><input type="radio" name="Phạm vi thiệp" id="s3" value="Chỉ nhà Gái"><label for="s3">Chỉ nhà Gái</label></div>
-</div></section>
+</div><p class="err">Bạn chọn một lựa chọn để form hiện đúng bảng thông tin nhé.</p></section>
 <fieldset id="p-t" hidden disabled><h2>Thông tin nhà Trai</h2><p style="margin:0 0 4px;color:var(--mut);font-size:14px">Chưa chốt thông tin nào thì bạn cứ để trống, bên mình sẽ hỏi lại qua Zalo.</p><div></div></fieldset>
 <fieldset id="p-g" hidden disabled><h2>Thông tin nhà Gái</h2><p style="margin:0 0 4px;color:var(--mut);font-size:14px">Chưa chốt thông tin nào thì bạn cứ để trống, bên mình sẽ hỏi lại qua Zalo.</p><div></div></fieldset>
 <section><h2>Lời nhắn</h2><div id="c3"></div></section>
+<p id="sum" class="sum" hidden></p>
 <button class="go" type="submit">Gửi thông tin</button>
 </form></main>
 <script>
@@ -75,7 +79,7 @@ const fld=(p,x)=>{const n=p+x.l,rq=x.r===0?"":"required";let c;
  else if(x.t==="select")c=`<select name="${n}" ${rq}><option value="">— Chọn —</option>${x.o.map(v=>`<option>${v}</option>`).join("")}</select>`;
  else if(x.t==="area")c=`<textarea name="${n}" rows="4" placeholder="${x.ph||""}"></textarea>`;
  else c=`<input name="${n}" type="${x.t||"text"}" ${rq} ${x.a||""} placeholder="${x.ph||""}">`;
- return `<div><label>${x.l}</label>${x.tip?`<button type="button" class="h" title="${x.tip}" aria-label="Gợi ý">?</button>`:""}${x.tip?`<p class="tip">${x.tip}</p>`:""}${c}${x.t==="date"?'<div class="wd"></div>':""}</div>`};
+ return `<div data-f><label>${x.l}${rq?'<span class="rq"> *</span>':""}</label>${x.tip?`<button type="button" class="h" title="${x.tip}" aria-label="Gợi ý">?</button>`:""}${x.tip?`<p class="tip">${x.tip}</p>`:""}${c}${x.t==="date"?'<div class="wd"></div>':""}<p class="err"></p></div>`};
 const R=(p,a)=>a.map(x=>x.sub?`<div class="sub">${x.sub}</div>`:fld(p,x)).join("");
 const T=(a,b)=>[{l:a,t:"time24",r:0,tip:"Gõ số hoặc chọn từ gợi ý, theo giờ 24 (ví dụ 17 : 30). Chỉ điền nếu muốn ghi giờ trên thiệp."},
  {l:b+" (dương lịch)",t:"date",r:0,tip:"Bấm vào ô để mở lịch: số lớn là ngày dương, số nhỏ là ngày âm. Chọn xong, ngày âm sẽ tự điền bên dưới."},
@@ -153,7 +157,18 @@ document.addEventListener("click",e=>{const t=e.target;if(t.classList&&t.classLi
  if(n&&cal.contains(n)){CM+=+n.dataset.n;if(CM<0){CM=11;CY--}if(CM>11){CM=0;CY++}draw()}else if(b)pick(...b.dataset.d.split("-").map(Number))});
 document.addEventListener("keydown",e=>{const t=e.target;if(e.key==="Escape")cal.hidden=true;
  if(t.classList&&t.classList.contains("dp")){if(e.key==="Enter"||e.key===" "){e.preventDefault();openCal(t)}else if(e.key!=="Tab")e.preventDefault()}});
-f.onsubmit=async e=>{e.preventDefault();const b=f.querySelector(".go");b.disabled=true;b.textContent="Đang gửi…";
+const validate=()=>{f.querySelectorAll(".bad").forEach(x=>x.classList.remove("bad"));let first=null,n=0;
+ const flag=(w,m,t)=>{w.classList.add("bad");const p=w.querySelector(".err");if(p&&m)p.textContent=m;n++;first=first||t};
+ for(const el of f.elements){if(el.disabled||!el.name||el.type==="hidden"||el.type==="radio")continue;const v=el.value.trim(),w=el.closest("[data-f]");if(!w)continue;
+  if(el.required&&!v)flag(w,"Mục này bắt buộc, bạn điền giúp mình nhé.",el);
+  else if(v&&el.pattern&&!new RegExp("^(?:"+el.pattern+")$").test(v))flag(w,"Số điện thoại chưa đúng, bạn kiểm tra lại nhé.",el)}
+ if(!f.querySelector('[name="Phạm vi thiệp"]:checked')){const w=document.querySelector(".pick").closest("section");flag(w,"",w)}
+ const m=document.getElementById("sum");m.hidden=!n;
+ if(n){m.textContent="Bạn còn "+n+" mục bắt buộc (có dấu *) chưa điền hoặc chưa đúng. Các ô màu đỏ cần bổ sung nhé.";first.scrollIntoView({behavior:"smooth",block:"center"});if(first.focus&&first.tagName!=="SECTION")first.focus({preventScroll:true})}
+ return n};
+f.addEventListener("input",e=>{const w=e.target.closest("[data-f]");if(w)w.classList.remove("bad")});
+f.addEventListener("change",e=>{const w=e.target.closest("[data-f]")||(e.target.type==="radio"&&e.target.closest("section"));if(w)w.classList.remove("bad")});
+f.onsubmit=async e=>{e.preventDefault();if(validate())return;const b=f.querySelector(".go");b.disabled=true;b.textContent="Đang gửi…";
  const p=new URLSearchParams();
  for(const el of f.elements){if(!el.name||el.disabled||(el.type==="radio"&&!el.checked))continue;let v=el.value;
   if(el.type==="date"&&v){const[y,m,d]=v.split("-");v=W[new Date(y,m-1,d).getDay()]+", "+d+"/"+m+"/"+y}p.append(el.name,v)}
