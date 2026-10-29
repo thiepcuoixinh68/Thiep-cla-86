@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="vi"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Thông tin đặt thiệp cưới</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbf7f8;--ink:#2b2126;--mut:#75666d;--ac:#8c2f4b;--ln:#e6d9de}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Be Vietnam Pro",system-ui,sans-serif}
+main{max-width:640px;margin:0 auto;padding:28px 18px 60px}
+h1,h2{font-family:"Playfair Display",serif;margin:0}
+h1{font-size:30px;line-height:1.2}
+h2{font-size:21px;color:var(--ac);margin-bottom:6px}
+.hello{color:var(--mut);margin:10px 0 24px}
+section,fieldset{background:#fff;border:1px solid var(--ln);border-radius:14px;padding:20px;margin:0 0 18px;min-width:0}
+label{display:inline-block;font-weight:500;font-size:15px;margin:14px 0 5px}
+input,select,textarea{width:100%;font:inherit;padding:11px 12px;border:1px solid var(--ln);border-radius:8px;background:#fff;color:var(--ink)}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid var(--ac);outline-offset:1px}
+.h{width:20px;height:20px;margin-left:8px;border:1px solid var(--ac);border-radius:50%;color:var(--ac);background:none;font-size:12px;cursor:pointer;padding:0}
+.tip{display:none;margin:0 0 6px;padding:8px 10px;background:#f5e9ed;border-radius:8px;font-size:14px;color:#5a3a46}
+.tip.on{display:block}
+.pick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+.pick div{position:relative}
+.pick input{position:absolute;opacity:0;width:1px;height:1px}
+.pick label{display:block;margin:0;text-align:center;padding:14px 6px;border:1.5px solid var(--ln);border-radius:10px;cursor:pointer;font-weight:500}
+.pick input:checked+label{background:var(--ac);border-color:var(--ac);color:#fff}
+.pick input:focus-visible+label{outline:2px solid var(--ac);outline-offset:2px}
+.tm{display:flex;align-items:center;gap:8px}.tm input{width:84px;text-align:center}
+#cal{position:fixed;inset:0;background:rgba(43,33,38,.5);display:grid;place-items:center;padding:12px;z-index:9}
+#cal>div{background:#fff;border-radius:14px;width:100%;max-width:440px;overflow:hidden}
+.ch{display:flex;align-items:center;justify-content:space-between;background:var(--ac);color:#fff;padding:12px 14px;font-weight:600;letter-spacing:.03em}
+.ch button{width:36px;height:36px;border-radius:50%;border:0;background:#fff;color:var(--ac);font-size:22px;line-height:1;cursor:pointer}
+.cg{display:grid;grid-template-columns:repeat(7,1fr)}
+.cg b{text-align:center;font-size:13px;font-weight:500;color:var(--mut);padding:8px 0;border-bottom:1px solid var(--ln)}
+.cg button{position:relative;height:56px;border:0;border-right:1px solid #f0e7ea;border-bottom:1px solid #f0e7ea;background:#fff;cursor:pointer;padding:0;font-family:inherit;color:var(--ink)}
+.cg i{position:absolute;left:7px;top:6px;font-size:20px;font-weight:600;line-height:1;font-style:normal}
+.cg em{position:absolute;right:5px;bottom:4px;font-size:12px;color:var(--mut);font-style:normal}
+.cg .o{opacity:.4}.cg .su i{color:#d0021b}.cg .sel{background:#fde9d0}.dp{cursor:pointer}
+.wd{font-size:14px;color:var(--ac);margin-top:4px}
+.sub{font-weight:600;margin-top:22px;padding-top:14px;border-top:1px solid var(--ln)}
+[hidden]{display:none!important}
+.go{width:100%;padding:15px;border:0;border-radius:10px;background:var(--ac);color:#fff;font-family:inherit;font-weight:600;font-size:17px;cursor:pointer}
+.go[disabled]{opacity:.6}
+.ok{text-align:center;padding:50px 10px}
+@media(max-width:480px){.pick{grid-template-columns:1fr}}
+</style></head>
+<body><main>
+<h1>Thông tin đặt thiệp cưới</h1>
+<p class="hello">Chào bạn, cảm ơn bạn đã tin tưởng đặt thiệp cưới bên mình. Bạn điền giúp mình thông tin bên dưới nhé, chỗ nào chưa rõ hãy bấm dấu <b>?</b> để xem gợi ý. Cần hỗ trợ cứ nhắn Zalo cho mình.</p>
+<form id="f">
+<section><h2>Thông tin liên hệ</h2><div id="c1"></div></section>
+<section><h2>Thông tin chung hai họ</h2><div id="c2"></div></section>
+<section><h2>Bạn muốn làm thiệp cho</h2>
+<div class="pick">
+<div><input type="radio" name="Phạm vi thiệp" id="s1" value="Cả hai nhà" required><label for="s1">Cả hai nhà</label></div>
+<div><input type="radio" name="Phạm vi thiệp" id="s2" value="Chỉ nhà Trai"><label for="s2">Chỉ nhà Trai</label></div>
+<div><input type="radio" name="Phạm vi thiệp" id="s3" value="Chỉ nhà Gái"><label for="s3">Chỉ nhà Gái</label></div>
+</div></section>
+<fieldset id="p-t" hidden disabled><h2>Thông tin nhà Trai</h2><div></div></fieldset>
+<fieldset id="p-g" hidden disabled><h2>Thông tin nhà Gái</h2><div></div></fieldset>
+<section><h2>Lời nhắn</h2><div id="c3"></div></section>
+<button class="go" type="submit">Gửi thông tin</button>
+</form></main>
+<script>
+// === CẦN SỬA 2 DÒNG NÀY ===
+const URL_SCRIPT="https://script.google.com/macros/s/AKfycbzZLXrA3FbLCDdyXzx6-cU4_vi5AC3f__nZkVzspVSqQFGeWXd0ZQKdlZ0cW9lp9x0ecQ/exec";
+const TOKEN="Tdt@28tp$USD"; // phải giống TOKEN trong Code.gs
+// ==========================
+const W=["Chủ nhật","Thứ hai","Thứ ba","Thứ tư","Thứ năm","Thứ sáu","Thứ bảy"];
+const fld=(p,x)=>{const n=p+x.l,rq=x.r===0?"":"required";let c;
+ if(x.t==="date")c=`<input class="dp" name="${n}" ${rq} inputmode="none" autocomplete="off" placeholder="Bấm để chọn ngày">`;
+ else if(x.t==="time24")c=`<div class="tm"><input inputmode="numeric" maxlength="2" list="hh" placeholder="Giờ" aria-label="Giờ" data-t><span>:</span><input inputmode="numeric" maxlength="2" list="mm" placeholder="Phút" aria-label="Phút" data-t><input type="hidden" name="${n}"></div>`;
+ else if(x.t==="select")c=`<select name="${n}" ${rq}><option value="">— Chọn —</option>${x.o.map(v=>`<option>${v}</option>`).join("")}</select>`;
+ else if(x.t==="area")c=`<textarea name="${n}" rows="4" placeholder="${x.ph||""}"></textarea>`;
+ else c=`<input name="${n}" type="${x.t||"text"}" ${rq} ${x.a||""} placeholder="${x.ph||""}">`;
+ return `<div><label>${x.l}</label>${x.tip?`<button type="button" class="h" title="${x.tip}" aria-label="Gợi ý">?</button>`:""}${x.tip?`<p class="tip">${x.tip}</p>`:""}${c}${x.t==="date"?'<div class="wd"></div>':""}</div>`};
+const R=(p,a)=>a.map(x=>x.sub?`<div class="sub">${x.sub}</div>`:fld(p,x)).join("");
+const T=(a,b)=>[{l:a,t:"time24",r:0,tip:"Gõ số hoặc chọn từ gợi ý, theo giờ 24 (ví dụ 17 : 30). Chỉ điền nếu muốn ghi giờ trên thiệp."},
+ {l:b+" (dương lịch)",t:"date",r:0,tip:"Bấm vào ô để mở lịch: số lớn là ngày dương, số nhỏ là ngày âm. Chọn xong, ngày âm sẽ tự điền bên dưới."},
+ {l:b+" (âm lịch)",r:0,ph:"Tự điền theo ngày dương, có thể sửa",tip:"Tự điền theo ngày dương lịch bạn chọn. Nếu cần chỉnh thì sửa trực tiếp."}];
+const P=(le,who)=>[
+ {l:"Số lượng thiệp",t:"number",a:'min="1" inputmode="numeric"',tip:"Nên lấy dư so với dự tính để khỏi thiếu phải in lại, phát sinh thêm chi phí."},
+ {l:"Tên lễ",t:"select",o:le,tip:"Chọn tên lễ sẽ in trên thiệp."},
+ {sub:"Lễ cử hành hôn lễ"},
+ ...T("Giờ cử hành hôn lễ","Ngày cử hành").map((x,i)=>i==1?{...x,r:1}:x),
+ {l:"Địa chỉ tổ chức lễ cưới",tip:"Tư gia (nhà riêng " + who + ") hoặc địa chỉ nhà hàng. Ghi đủ số nhà, đường, phường/xã, tỉnh/thành."},
+ {sub:"Đãi tiệc (nếu có)"},
+ ...T("Giờ đãi tiệc","Ngày đãi tiệc"),
+ {l:"Địa chỉ tổ chức đại tiệc",r:0,tip:"Tư gia hoặc nhà hàng, ghi đủ địa chỉ."}];
+c1.innerHTML=R("",[
+ {l:"Tên Zalo hoặc Facebook",tip:"Tên tài khoản để bên mình liên hệ và gửi bản thiết kế cho bạn xem."},
+ {l:"Số điện thoại",t:"tel",a:'inputmode="tel" pattern="[0-9 +.]{9,14}"'},
+ {l:"Địa chỉ nhận thiệp",tip:"Nơi bên mình gửi thiệp tới: số nhà, đường, phường/xã, tỉnh/thành."}]);
+c2.innerHTML=R("",[
+ {l:"Ông (nhà Trai)",r:0,tip:"Họ tên bố chú rể. Bỏ trống nếu không ghi."},
+ {l:"Bà (nhà Trai)",r:0,tip:"Họ tên mẹ chú rể. Bỏ trống nếu không ghi."},
+ {l:"Địa chỉ nhà Trai"},
+ {l:"Ông (nhà Gái)",r:0,tip:"Họ tên bố cô dâu. Bỏ trống nếu không ghi."},
+ {l:"Bà (nhà Gái)",r:0,tip:"Họ tên mẹ cô dâu. Bỏ trống nếu không ghi."},
+ {l:"Địa chỉ nhà Gái"},
+ {l:"Tên Chú Rể in trên thiệp",tip:"Ghi đúng như muốn in, ví dụ: Minh Quân."},
+ {l:"Tên Cô Dâu in trên thiệp",tip:"Ghi đúng như muốn in, ví dụ: Thu Hà."}]);
+c3.innerHTML=R("",[{l:"Ghi chú nhắn nhủ",t:"area",r:0,ph:"Bạn muốn nhắn thêm điều gì cho bên mình?"}]);
+document.querySelector("#p-t div").innerHTML=R("Nhà Trai – ",P(["Lễ Thành Hôn","Lễ Tân Hôn","Lễ Báo Hỷ"],"nhà Trai"));
+document.querySelector("#p-g div").innerHTML=R("Nhà Gái – ",P(["Lễ Vu Quy","Lễ Thành Hôn","Lễ Báo Hỷ"],"nhà Gái"));
+const show=(el,on)=>{el.hidden=!on;el.disabled=!on};
+document.querySelectorAll('[name="Phạm vi thiệp"]').forEach(r=>r.onchange=()=>{
+ show(document.getElementById("p-t"),r.value!=="Chỉ nhà Gái");
+ show(document.getElementById("p-g"),r.value!=="Chỉ nhà Trai")});
+document.addEventListener("click",e=>{const b=e.target.closest(".h");if(b)b.nextElementSibling.classList.toggle("on")});
+document.addEventListener("change",e=>{const t=e.target;if(t.type!=="date")return;const v=t.value,w=t.parentNode.querySelector(".wd"),L=f.elements[t.name.replace("dương","âm")];
+ if(!v){w.textContent="";if(L)L.value="";return}
+ const[y,m,d]=v.split("-").map(Number),x=lunarText(d,m,y);
+ w.textContent=W[new Date(y,m-1,d).getDay()]+", "+d+"/"+m+"/"+y+" — Âm lịch: "+x;if(L)L.value=x});
+const I=Math.floor,TZ=7,PI=Math.PI,DR=PI/180;
+const jd=(d,m,y)=>{const a=I((14-m)/12),Y=y+4800-a,M=m+12*a-3;return d+I((153*M+2)/5)+365*Y+I(Y/4)-I(Y/100)+I(Y/400)-32045};
+const newMoon=k=>{const T=k/1236.85,T2=T*T,T3=T2*T,s=x=>Math.sin(DR*x);let J=2415020.75933+29.53058868*k+0.0001178*T2-0.000000155*T3+0.00033*s(166.56+132.87*T-0.009173*T2);
+ const M=359.2242+29.10535608*k-0.0000333*T2-0.00000347*T3,P=306.0253+385.81691806*k+0.0107306*T2+0.00001236*T3,F=21.2964+390.67050646*k-0.0016528*T2-0.00000239*T3;
+ const C=(0.1734-0.000393*T)*s(M)+0.0021*s(2*M)-0.4068*s(P)+0.0161*s(2*P)-0.0004*s(3*P)+0.0104*s(2*F)-0.0051*s(M+P)-0.0074*s(M-P)+0.0004*s(2*F+M)-0.0004*s(2*F-M)-0.0006*s(2*F+P)+0.001*s(2*F-P)+0.0005*s(2*P+M);
+ const dt=T<-11?0.001+0.000839*T+0.0002261*T2-0.00000845*T3-0.000000081*T*T3:-0.000278+0.000265*T+0.000262*T2;return J+C-dt};
+const sunLong=n=>{const T=(n-0.5-TZ/24-2451545)/36525,T2=T*T,s=x=>Math.sin(DR*x),M=357.5291+35999.0503*T-0.0001559*T2-0.00000048*T*T2,L0=280.46645+36000.76983*T+0.0003032*T2;
+ const L=(L0+(1.9146-0.004817*T-0.000014*T2)*s(M)+(0.019993-0.000101*T)*s(2*M)+0.00029*s(3*M))*DR;return I((L-2*PI*I(L/(2*PI)))/PI*6)};
+const nm=k=>I(newMoon(k)+0.5+TZ/24);
+const m11=y=>{const k=I((jd(31,12,y)-2415021)/29.530588853);let n=nm(k);if(sunLong(n)>=9)n=nm(k-1);return n};
+const leap=a=>{const k=I((a-2415021.076998695)/29.530588853+0.5);let i=1,l,r=sunLong(nm(k+i));do{l=r;i++;r=sunLong(nm(k+i))}while(r!=l&&i<14);return i-1};
+const lunar=(d,m,y)=>{const n=jd(d,m,y),k=I((n-2415021.076998695)/29.530588853);let s=nm(k+1);if(s>n)s=nm(k);let a=m11(y),b=a,ly;
+ if(a>=s){ly=y;a=m11(y-1)}else{ly=y+1;b=m11(y+1)}
+ const df=I((s-a)/29);let lm=df+11,lp=0;
+ if(b-a>365){const o=leap(a);if(df>=o){lm=df+10;if(df==o)lp=1}}
+ if(lm>12)lm-=12;if(lm>=11&&df<4)ly--;return[n-s+1,lm,ly,lp]};
+const CAN=["Giáp","Ất","Bính","Đinh","Mậu","Kỷ","Canh","Tân","Nhâm","Quý"],CHI=["Tý","Sửu","Dần","Mão","Thìn","Tỵ","Ngọ","Mùi","Thân","Dậu","Tuất","Hợi"];
+const lunarText=(d,m,y)=>{const[a,b,c,p]=lunar(d,m,y);return a+" tháng "+b+(p?" nhuận":"")+" năm "+CAN[(c+6)%10]+" "+CHI[(c+8)%12]};
+const pad=v=>String(v).padStart(2,"0");
+document.body.insertAdjacentHTML("beforeend",`<datalist id="hh">${[...Array(24).keys()].map(i=>`<option value="${pad(i)}">`).join("")}</datalist><datalist id="mm">${[0,15,30,45].map(i=>`<option value="${pad(i)}">`).join("")}</datalist>`);
+document.addEventListener("input",e=>{const t=e.target;if(!t.hasAttribute("data-t"))return;const c=t.parentNode.children,H=c[0],M=c[2];
+ t.value=t.value.replace(/\D/g,"");if(+H.value>23)H.value="23";if(+M.value>59)M.value="59";c[3].value=H.value===""?"":pad(H.value)+":"+pad(M.value||0)});
+document.addEventListener("focusout",e=>{const t=e.target;if(t.hasAttribute&&t.hasAttribute("data-t")&&t.value)t.value=pad(t.value)});
+let CI,CM,CY;
+const cal=document.createElement("div");cal.id="cal";cal.hidden=true;
+cal.innerHTML='<div><div class="ch"><button type="button" data-n="-1" aria-label="Tháng trước">‹</button><span></span><button type="button" data-n="1" aria-label="Tháng sau">›</button></div><div class="cg"></div></div>';document.body.append(cal);
+const draw=()=>{cal.querySelector(".ch span").textContent="THÁNG "+(CM+1)+" - "+CY;
+ const off=(new Date(CY,CM,1).getDay()+6)%7;let h=["T2","T3","T4","T5","T6","T7","CN"].map(x=>`<b>${x}</b>`).join("");
+ for(let i=0;i<42;i++){const t=new Date(CY,CM,1-off+i),d=t.getDate(),m=t.getMonth()+1,y=t.getFullYear(),[ld,lm]=lunar(d,m,y);
+  h+=`<button type="button" class="${t.getMonth()!==CM?"o ":""}${t.getDay()===0?"su ":""}${CI.dataset.iso===y+"-"+m+"-"+d?"sel":""}" data-d="${y}-${m}-${d}"><i>${d}</i><em>${ld===1||d===1?ld+"/"+lm:ld}</em></button>`}
+ cal.querySelector(".cg").innerHTML=h};
+const openCal=el=>{CI=el;const[y,m]=(el.dataset.iso||"").split("-").map(Number),n=new Date();CY=y||n.getFullYear();CM=y?m-1:n.getMonth();draw();cal.hidden=false};
+const pick=(y,m,d)=>{const L=f.elements[CI.name.replace("dương","âm")],x=lunarText(d,m,y);CI.dataset.iso=y+"-"+m+"-"+d;
+ CI.value=W[new Date(y,m-1,d).getDay()]+", "+pad(d)+"/"+pad(m)+"/"+y;CI.parentNode.querySelector(".wd").textContent="Âm lịch: "+x;if(L)L.value=x;cal.hidden=true;CI.focus()};
+document.addEventListener("click",e=>{const t=e.target;if(t.classList&&t.classList.contains("dp"))return openCal(t);if(t===cal)return cal.hidden=true;
+ const n=t.closest("[data-n]"),b=t.closest("#cal [data-d]");
+ if(n&&cal.contains(n)){CM+=+n.dataset.n;if(CM<0){CM=11;CY--}if(CM>11){CM=0;CY++}draw()}else if(b)pick(...b.dataset.d.split("-").map(Number))});
+document.addEventListener("keydown",e=>{const t=e.target;if(e.key==="Escape")cal.hidden=true;
+ if(t.classList&&t.classList.contains("dp")){if(e.key==="Enter"||e.key===" "){e.preventDefault();openCal(t)}else if(e.key!=="Tab")e.preventDefault()}});
+f.onsubmit=async e=>{e.preventDefault();const b=f.querySelector(".go");b.disabled=true;b.textContent="Đang gửi…";
+ const p=new URLSearchParams();
+ for(const el of f.elements){if(!el.name||el.disabled||(el.type==="radio"&&!el.checked))continue;let v=el.value;
+  if(el.type==="date"&&v){const[y,m,d]=v.split("-");v=W[new Date(y,m-1,d).getDay()]+", "+d+"/"+m+"/"+y}p.append(el.name,v)}
+ p.append("token",TOKEN);
+ try{await fetch(URL_SCRIPT,{method:"POST",mode:"no-cors",body:p});
+  f.innerHTML='<div class="ok"><h2>Bên mình đã nhận thông tin</h2><p>Cảm ơn bạn. Bên mình sẽ kiểm tra và nhắn Zalo xác nhận lại với bạn sớm nhất.</p></div>'}
+ catch(_){b.disabled=false;b.textContent="Gửi thông tin";alert("Chưa gửi được. Bạn thử lại hoặc nhắn Zalo cho bên mình nhé.")}};
+</script></body></html>
